@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Directory</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="./all.css">-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,800;1,400&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light">
+
+        <a class="navbar-brand h1" href="https://tmusenko.com/directory/"><i class="fas fa-folder fa-2x"></i> <span
+                class="logo">Company
+                Directory</span></a>
+
+    </nav>
+
+    <hr>
+
+    <main>
+        <div id="controls" class="row">
+            <div class="search">
+                <h4>Keywords</h4>
+                <input id="searchBar" placeholder="Type in a keyword or name...">
+            </div>
+            <div class="departmentSelect">
+                <h4>Department</h4>
+                <select class="filterSelect allDepartments">
+
+                </select>
+            </div>
+
+            <div class="LocationSelect">
+                <h4>Location</h4>
+                <select class="filterSelect allLocations">
+
+                </select>
+            </div>
+            <div class="filterControl">
+                <div class="filterButton">
+                    <button class="btn btn-secondary" id="searchButton" onclick="search()"><i class="fas fa-search"></i>
+                        Filter</button>
+                </div>
+                <div class="resetButton">
+                    <a onclick="reset()">
+                        <i class="fas fa-redo"></i>
+                    </a>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add/remove data
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <div class="editMode">
+                            <button class="dropdown-item" type="button" id="editMode" onclick="addEm()"><i
+                                    class="fas fa-plus"></i> Add Employee </button>
+                            <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
+                                data-target="#locationM"><i class="fas fa-plus"></i> Add location</button>
+                            <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
+                                data-target="#locationMR"><i class="fas fa-minus"></i> Remove location</button>
+                            <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
+                                data-target="#departmentM"><i class="fas fa-plus"></i> Add department</button>
+                            <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
+                                data-target="#departmentMR"><i class="fas fa-minus"></i> Remove department</button>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="modal fade" id="locationM" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add location</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input id="addLocation">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="addLocation()">Add new
+                                        location</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="modal fade" id="locationMR" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Remove location</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <select class="filterSelect allLocations" id="removeLocation">
+
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="show_confirm()">Remove
+                                        location</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="modal fade" id="departmentM" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add department</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input id="addDepartment">
+                                    <select class="filterSelect allLocations" id="newDepartment">
+
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="addDepartment()">Add new
+                                        department</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal fade" id="departmentMR" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Remove department</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <select class="filterSelect allDepartments" id="removeDepartment">
+
+                                    </select>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="show_confirmD()">Remove
+                                        department</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <hr>
+
+
+
+        <div class="row">
+
+            <div class="dataBase table-wrapper-scroll-y my-custom-scrollbar col-8">
+                <table class="table table-hover table-fixed mb-0" id="dataBase">
+                    <thead>
+                        <tr id="tableHeader">
+                            <th scope="col" class="hide">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="hide">Department</th>
+                            <th scope="col" class="hide">Email</th>
+                            <th scope="col" class="hide">Location</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-4" id="badge">
+
+                <i class="fas fa-id-badge fa-5x" id="phoneB"></i>
+
+
+                <div id="updateInfo">
+
+
+
+                    <p>FIRST NAME: <span id="firstName">James</span></p>
+
+                    <p>LAST NAME: <span id="lastName">Box</span></p>
+
+                    <p>EMAIL: <span id="email">jamesbarr@company.com</span></p>
+
+                    <p>DEPARTMENT: <span id="department">Engineering</span></p>
+
+
+
+                    <p>Location: <span id="location">London</span></p>
+
+                    <button class="btn btn-secondary" id="save" onclick="show_confirmE()">Save</button>
+                    <button class="btn btn-secondary" id="cancel" onclick="restartP()">Cancel</button>
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </main>
+
+    <div class="overlay" id="addEmployeeOverlay">
+        <div class="profile">
+            <div class="row profileTitle">
+                <h2>Add Employee</h2>
+            </div>
+            <div class="row profileRow">
+                <h3 class="col-5 col-sm-4">First Name:</h3>
+                <input id="addEmployeeFirstName">
+            </div>
+            <div class="row profileRow">
+                <h3 class="col-5 col-sm-4">Last Name:</h3>
+                <input id="addEmployeeLastName">
+            </div>
+            <div class="row profileRow">
+                <h3 class="col-5 col-sm-4">Email:</h3>
+                <input id="addEmployeeEmail">
+            </div>
+            <div class="row profileRow">
+                <h3 class="col-5 col-sm-4">Location:</h3>
+                <select id="addEmployeeLocation" class="allLocations">
+
+                </select>
+            </div>
+            <div class="row profileRow">
+                <h3 class="col-5 col-sm-4">Department:</h3>
+                <select id="addEmployeeDepartment" class="allDepartments">
+
+                </select>
+            </div>
+            <div class="row d-flex align-items-center justify-content-center pt-3" id="buttonN">
+                <div class="col d-flex justify-content-center">
+                    <button class="btn btn-secondary" onclick="back()" id="btnO">Return</button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <button class="btn btn-secondary" onclick="addEmployee()" id="btnT">Add new employee</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="d-flex align-items-center justify-content-center" id="footer">
+        <span>
+            Total Entries: <span id="totalEntries"></span>
+        </span>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
