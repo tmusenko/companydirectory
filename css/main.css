@@ -1,0 +1,354 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html{
+  padding: 0;
+  margin: 0;
+}
+
+hr{
+  height: 2px;
+  background: lightgray;
+  border: none;
+  margin-top: 0;
+}
+
+#searchBar{
+  width: 100%;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.filterSelect{
+  height: 40px;
+}
+
+.filterControl{
+  display: flex;
+  align-items: flex-end;
+}
+
+#searchButton{
+  height: 40px;
+  width: 10em;
+  margin-right: 10px;
+  border-radius: 0;
+  background-color: grey;
+}
+
+#dropdownMenu2{
+    background-color: grey;
+    border-radius: 0;
+    color: white;
+}
+
+.row{
+  margin-left: 3em;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+.table th{
+  border-top: none;
+}
+
+.resetButton{
+  cursor: pointer;
+  font-size: 1.4em;
+  margin-bottom: 2px;
+  margin-right: 100px;
+}
+
+#editMode{
+  height: 40px;
+  padding: 0;
+  text-align: left;
+  font-size: 0.9em;
+  padding-left: 0.5em;
+  color: white;
+}
+
+#editMode:hover{
+    transition: 0.3s all ease;
+}
+
+.fa-ellipsis-v{
+  cursor: pointer;
+}
+
+.logo{
+  font-weight: 700;
+  font-size: 2em;
+  margin-left: 0.3em;
+}
+
+
+#badge{
+  text-align: center;
+  top: 20px;
+}
+
+#footer {
+   /*color: white; */
+  height: 9%;
+  font-size: 1.2em;
+  font-weight: 600;
+  background-color: lightgrey;
+}
+
+#controls{
+  margin-left: 4em;
+}
+/* 
+main{
+  display: none;
+} */
+
+ .profile{
+  display: none;
+} 
+
+.profile input{
+  width: 14em;
+  height: 2.3em;
+  text-align: center;
+  position: absolute;
+  left: 42%;
+}
+.profile select{
+  width: 14em;
+  height: 2.3em;
+  text-align-last: center;
+  position: absolute;
+  left: 42%;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 25em;
+overflow: auto;
+border:none;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.navbar{
+    /*margin-left: 3em;*/
+    background-color: lightgrey;
+}
+
+.fa-5x{
+    font-size: 13em;
+    margin-bottom: 1rem;
+}
+
+#save, #cancel{
+    display:none;
+    margin-top: 1em;
+}
+
+p{
+    margin-bottom: 0;
+    margin-top: 0.3rem;
+    /*display: flex;*/
+    /*justify-content: space-evenly;*/
+
+}
+
+input#firstName, input#lastName, input#department, input#location, input#email{
+    width: auto;
+    height: auto;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+/*#id{*/
+/*    display: none;*/
+/*}*/
+
+.dropdown-item:hover{
+    background-color: lightgrey;
+}
+
+.fas.fa-plus, .fas.fa-minus {
+    font-size: 0.8em;
+}
+
+tr{
+    cursor:pointer;
+}
+
+tr:hover{
+    transition: 0.3s all ease;
+}
+
+#updateInfo{
+    font-weight: 500;
+}
+
+#firstName, #lastName, #department, #location, #email{
+    font-style: italic;
+}
+
+.dropdown-menu{
+  min-width: 100%;
+  text-align: left;
+  background-color: grey;
+}
+
+.dropdown-menu{
+  opacity: 0;
+  animation-name: menu1;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;}
+
+@keyframes menu1{
+0% { opacity: 0; }
+20% { opacity: 0.2; }
+40% { opacity: 0.4; }
+60% { opacity: 0.6; }
+80% { opacity: 0.8; }
+100%{ opacity: 1; }
+}
+
+
+@media screen and (max-width: 1282px) {
+  .filterControl{
+      margin-left: 10%;
+  }
+  #badge{
+      display: flex;
+      top: 2em;
+  }
+  #updateInfo{
+      margin-left: 2em;
+  }
+  .col-8{
+      flex: 0 0 96%;
+      max-width: 96%;
+  }
+  #save, #cancel{
+    /*display:none;*/
+    margin-bottom: 1em;
+}
+  
+}
+
+@media screen and (max-width: 746px) {
+    #controls{
+        display: inline-block;
+    }
+    #badge{
+        left: 15%;
+    }
+    .filterControl{
+      margin-top: 2em;
+  }
+  .dataBase{
+      margin-left: -3em;
+  }
+  
+}
+
+
+@media screen and (max-width: 604px) {
+    .filterControl{
+      margin-left: 0;
+      display: block;
+  }
+  .fa-5x{
+      font-size: 8em;
+      margin-top: 10%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+    .profileTitle h2{
+        font-size: 1.5em;
+    }
+    .profileRow h3{
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 547px) {
+    .profileTitle h2{
+        font-size: 1em;
+    }
+    .profileRow h3{
+        font-size: 1rem;
+    }
+    
+    .profile select{
+      /*position: inherit;*/
+      width: 11em;
+      height: 1.5em;
+  }
+  .profile input{
+      /*position: inherit;*/
+       width: 11em;
+      height: 1.5em;
+  }
+}
+
+
+@media screen and (max-width: 510px) {
+    
+  .fa-5x{
+      display: none;
+  }
+  .navbar-brand{
+      font-size: 0.8em;
+  }
+  #buttonN{
+      margin-left: -3em;
+  }
+  #badge{
+      flex: 0 0 96%;
+      max-width: 96%;
+      left: 0;
+      justify-content: center;
+  }
+  #updateInfo{
+      margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 366px) {
+    
+  #updateInfo{
+     margin-left: 0; 
+  }
+}
+
+@media screen and (max-width: 436px) {
+    
+  .profile select{
+      position: inherit;
+    
+  }
+  .profile input{
+      position: inherit;
+       
+  }
+  #btnO{
+      font-size: 0.8em;
+  }
+  #btnT{
+      font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 328px) {
+    
+  .navbar-brand{
+      font-size: 0.6em;
+  }
+}
+
+
