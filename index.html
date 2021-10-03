@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
@@ -20,6 +21,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,800;1,400&display=swap"
         rel="stylesheet">
+   
+ 
+
+
 
 </head>
 
@@ -39,18 +44,18 @@
         <div id="controls" class="row">
             <div class="search">
                 <h4>Keywords</h4>
-                <input id="searchBar" placeholder="Type in a keyword or name...">
+                <input id="searchBar" placeholder="Type in a name or last name here...">
             </div>
             <div class="departmentSelect">
                 <h4>Department</h4>
-                <select class="filterSelect allDepartments">
+                <select class="filterSelect allDepartments" id="allDepartments" onclick="sortListD()">
 
                 </select>
             </div>
 
             <div class="LocationSelect">
                 <h4>Location</h4>
-                <select class="filterSelect allLocations">
+                <select class="filterSelect allLocations" id="allLocations" onclick="sortList()">
 
                 </select>
             </div>
@@ -72,7 +77,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <div class="editMode">
-                            <button class="dropdown-item" type="button" id="editMode" onclick="addEm()"><i
+                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal2" id="editMode" onclick="addEm()"><i
                                     class="fas fa-plus"></i> Add Employee </button>
                             <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
                                 data-target="#locationM"><i class="fas fa-plus"></i> Add location</button>
@@ -126,7 +131,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <select class="filterSelect allLocations" id="removeLocation">
+                                    <select class="filterSelect allLocations" id="removeLocation" onclick="sortListR()">
 
                                     </select>
                                 </div>
@@ -182,14 +187,14 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <select class="filterSelect allDepartments" id="removeDepartment">
+                                    <select class="filterSelect allDepartments" id="removeDepartment" onclick="sortListRD()">
 
                                     </select>
 
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="show_confirmD()">Remove
+                                    <button type="button" class="btn btn-primary" onclick="checkPC()">Remove
                                         department</button>
                                 </div>
                             </div>
@@ -221,16 +226,9 @@
         <div class="row">
 
             <div class="dataBase table-wrapper-scroll-y my-custom-scrollbar col-8">
-                <table class="table table-hover table-fixed mb-0" id="dataBase">
+                <table class="table table-hover mb-0" id="dataBase">
                     <thead>
-                        <tr id="tableHeader">
-                            <th scope="col" class="hide">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col" class="hide">Department</th>
-                            <th scope="col" class="hide">Email</th>
-                            <th scope="col" class="hide">Location</th>
-                            <th scope="col"></th>
-                        </tr>
+                       
                     </thead>
                     <tbody>
 
@@ -277,51 +275,115 @@
             </div>
 
         </div>
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit the profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="naujas">
+    <div class="form-group row">
+     
+    <div class="col-8">
+      <input id="idE" name="text2" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="nameE" class="col-4 col-form-label">Name:</label> 
+    <div class="col-8">
+      <input id="nameE" name="text2" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="lastE" class="col-4 col-form-label">Last Name:</label> 
+    <div class="col-8">
+      <input id="lastE" name="text1" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="emailE" class="col-4 col-form-label">Email:</label> 
+    <div class="col-8">
+      <input id="emailE" name="text3" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="selectE" class="col-4 col-form-label">Department:</label> 
+    <div class="col-8">
+      <select id="selectE" name="select" class="custom-select allDepartments" onclick="sortListN()"></select>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+    </div>
+  </div>
+</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="show_confirmE()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
     </main>
 
-    <div class="overlay" id="addEmployeeOverlay">
-        <div class="profile">
-            <div class="row profileTitle">
-                <h2>Add Employee</h2>
-            </div>
-            <div class="row profileRow">
-                <h3 class="col-5 col-sm-4">First Name:</h3>
-                <input id="addEmployeeFirstName">
-            </div>
-            <div class="row profileRow">
-                <h3 class="col-5 col-sm-4">Last Name:</h3>
-                <input id="addEmployeeLastName">
-            </div>
-            <div class="row profileRow">
-                <h3 class="col-5 col-sm-4">Email:</h3>
-                <input id="addEmployeeEmail">
-            </div>
-            <div class="row profileRow">
-                <h3 class="col-5 col-sm-4">Location:</h3>
-                <select id="addEmployeeLocation" class="allLocations">
-
-                </select>
-            </div>
-            <div class="row profileRow">
-                <h3 class="col-5 col-sm-4">Department:</h3>
-                <select id="addEmployeeDepartment" class="allDepartments">
-
-                </select>
-            </div>
-            <div class="row d-flex align-items-center justify-content-center pt-3" id="buttonN">
-                <div class="col d-flex justify-content-center">
-                    <button class="btn btn-secondary" onclick="back()" id="btnO">Return</button>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <button class="btn btn-secondary" onclick="addEmployee()" id="btnT">Add new employee</button>
-                </div>
-            </div>
-
-        </div>
+   <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+  <div class="form-group row">
+    <label for="addEmployeeFirstName" class="col-4 col-form-label">Name:</label> 
+    <div class="col-8">
+      <input id="addEmployeeFirstName" name="text2" type="text" class="form-control">
     </div>
+  </div>
+  <div class="form-group row">
+    <label for="addEmployeeLastName" class="col-4 col-form-label">Last Name:</label> 
+    <div class="col-8">
+      <input id="addEmployeeLastName" name="text1" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="addEmployeeEmail" class="col-4 col-form-label">Email:</label> 
+    <div class="col-8">
+      <input id="addEmployeeEmail" name="text3" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="addEmployeeDepartment" class="col-4 col-form-label">Department:</label> 
+    <div class="col-8">
+      <select id="addEmployeeDepartment" name="select" class="custom-select allDepartments"></select>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+    </div>
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="addEmployee()">Add new Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -339,6 +401,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="./js/main.js"></script>
 </body>
 
