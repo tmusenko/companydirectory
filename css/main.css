@@ -8,6 +8,10 @@ html{
   margin: 0;
 }
 
+#idE, #id{
+    display: none;
+}
+
 hr{
   height: 2px;
   background: lightgray;
@@ -45,8 +49,8 @@ hr{
 }
 
 .row{
-  margin-left: 3em;
-  margin-right: auto;
+  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 2em;
 }
 
@@ -128,12 +132,16 @@ main{
 .my-custom-scrollbar {
 position: relative;
 height: 25em;
-overflow: auto;
+overflow-y: auto;
 border:none;
+overflow-x: hidden;
 }
 .table-wrapper-scroll-y {
 display: block;
 }
+
+
+
 
 .navbar{
     /*margin-left: 3em;*/
@@ -249,9 +257,9 @@ tr:hover{
     .filterControl{
       margin-top: 2em;
   }
-  .dataBase{
-      margin-left: -3em;
-  }
+  /*.dataBase{*/
+  /*    margin-left: -3em;*/
+  /*}*/
   
 }
 
@@ -264,6 +272,10 @@ tr:hover{
   .fa-5x{
       font-size: 8em;
       margin-top: 10%;
+  }
+   #updateInfo{
+      margin-bottom: 1.5em;
+      
   }
 }
 
@@ -316,6 +328,7 @@ tr:hover{
   }
   #updateInfo{
       margin-left: 0;
+      
   }
 }
 
@@ -350,5 +363,17 @@ tr:hover{
       font-size: 0.6em;
   }
 }
+
+@media screen and (max-width: 806px) {
+    
+  #hideEm{
+      display: none;
+  }
+  #hideLo{
+      display: none;
+  }
+}
+
+
 
 
