@@ -27,14 +27,15 @@ function clearTable() {
         
         
         
-            <th scope="col">Name</th>
+            <th scope="col" id="nameHeader">Name</th>
             <th scope="col" class="hideCell" id="departmentHeader">Department</th>
-            <th scope="col" class="hideCell">Email</th>
+            <th scope="col" class="hideCell" id="emailHeader">Email</th>
             <th scope="col" class="hideCell" id="locationHeader">Location</th>
         </tr>
     </tbody>
     `)
 }
+
 
 
 
@@ -67,7 +68,7 @@ function appendEntry(db, i, filterBy) {
 
 }
 
-function sortList() {
+$('#allLocations').click(function sortList() {
   var list, i, switching, b, shouldSwitch;
   list = document.getElementById("allLocations");
   switching = true;
@@ -97,9 +98,41 @@ function sortList() {
       switching = true;
     }
   }
-}
+})
 
-function sortListD() {
+$('.sortL').click(function sortList() {
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("allLocationsO");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("OPTION");
+    // Loop through all list items:
+    for (i = 0; i < (b.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Check if the next item should
+      switch place with the current item: */
+      if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+        /* If next item is alphabetically lower than current item,
+        mark as a switch and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+})
+
+$('#allDepartments').click(function sortListD() {
   var list, i, switching, b, shouldSwitch;
   list = document.getElementById("allDepartments");
   switching = true;
@@ -129,9 +162,47 @@ function sortListD() {
       switching = true;
     }
   }
-}
+})
 
-function sortListR() {
+$('.sortD').click(function sortListD() {
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("allDepartmentsO");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("OPTION");
+    // Loop through all list items:
+    for (i = 1; i < (b.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Check if the next item should
+      switch place with the current item: */
+      if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+        /* If next item is alphabetically lower than current item,
+        mark as a switch and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+})
+
+// function myFunction(){
+//     console.log('labas')
+// }
+
+// document.getElementById("allDepartmentsO").onclick = function() {myFunction()};
+
+$('.sortListR').click(function sortListR() {
   var list, i, switching, b, shouldSwitch;
   list = document.getElementById("removeLocation");
   switching = true;
@@ -161,9 +232,9 @@ function sortListR() {
       switching = true;
     }
   }
-}
+})
 
-function sortListRD() {
+$('.sortListRD').click(function sortListRD() {
   var list, i, switching, b, shouldSwitch;
   list = document.getElementById("removeDepartment");
   switching = true;
@@ -193,9 +264,9 @@ function sortListRD() {
       switching = true;
     }
   }
-}
+})
 
-function sortListN() {
+$('.sortListN').click(function sortListN() {
   var list, i, switching, b, shouldSwitch;
   list = document.getElementById("selectE");
   switching = true;
@@ -225,7 +296,7 @@ function sortListN() {
       switching = true;
     }
   }
-}
+})
 
 
 
@@ -262,6 +333,23 @@ function noDepartment(db, i, filterBy, searchText) {
 
 
     var filterQuery = $('.filterSelect:eq(1)').val()
+
+
+
+    var strLength = searchText.length;
+
+    if (db[i].location.toLowerCase() == filterQuery.toLowerCase() & (db[i].firstName.toLowerCase().slice(0, strLength) == searchText.toLowerCase() || db[i].lastName.toLowerCase().slice(0, strLength) == searchText.toLowerCase())) {
+        appendEntry(db, i, filterBy)
+        return 1;
+    }
+    return 0;
+}
+
+function noDepartmentM(db, i, filterBy, searchText) {
+
+
+
+    var filterQuery = $('.sortL:first').val()
 
 
 
@@ -326,8 +414,20 @@ function someInfo(db, i, filterBy, searchText) {
 
 
 
-function search() {
+$('#searchButton').click(function search() {
 
+//     $(document).ready(function() {
+//     if($(window).width() >= 806) {
+//         clearTable();
+//     } else {
+//         clearTableM();
+//     }
+// });
+
+// console.log('labas')
+
+   
+    
     clearTable();
 
     var filterBy = $('.filterSelect:first').val()
@@ -335,6 +435,10 @@ function search() {
     var filterQuery = $('.filterSelect:eq(1)').val()
 
     var searchText = $('#searchBar').val()
+    
+    console.log(filterBy)
+     console.log(filterQuery)
+      console.log(searchText)
 
 
     $.ajax({
@@ -399,12 +503,105 @@ function search() {
         }
     })
 
-}
+})
+
+
+$('.searchM').click(function searchM() {
+
+//     $(document).ready(function() {
+//     if($(window).width() >= 806) {
+//         clearTable();
+//     } else {
+//         clearTableM();
+//     }
+// });
+
+// console.log('labas')
+
+    $('#searchF').modal('hide')
+    
+    clearTable();
+
+    var filterBy = $('.sortD:first').val()
+
+    var filterQuery = $('.sortL:first').val()
+
+    var searchText = $('#searchBarM').val()
+    
+    console.log(filterBy)
+     console.log(filterQuery)
+      console.log(searchText)
+
+
+    $.ajax({
+        type: 'GET',
+        url: 'php/getAll.php',
+        dataType: 'json',
+        success: function (data) {
+
+            var db = data.data;
+
+
+
+            var numberOfEntries = 0;
 
 
 
 
-function reset() {
+
+
+            for (let i in db) {
+
+                switch (filterQuery) {
+                    case "default":
+
+                        switch (filterBy) {
+                            case "default":
+                                numberOfEntries += noInfo(db, i, filterBy, searchText)
+
+                                break;
+                            default:
+                                numberOfEntries += someInfo(db, i, filterBy, searchText)
+
+                                break;
+                        }
+                        break;
+                    case filterQuery:
+                        switch (filterBy) {
+                            case "default":
+
+                                numberOfEntries += noDepartmentM(db, i, filterBy, searchText)
+                                console.log('labas')
+
+                                break;
+                            default:
+                                numberOfEntries += department(db, i, filterBy, searchText)
+                                console.log('rytas')
+                                break;
+                        }
+                        break;
+                }
+
+
+
+            }
+
+
+
+            $('#totalEntries').html(numberOfEntries)
+
+
+
+
+        }
+    })
+
+})
+
+
+
+
+$('.reset').click(function reset() {
 
     $('.filterSelect:first').val('default')
     $('.filterSelect:eq(1)').val('default')
@@ -415,7 +612,22 @@ function reset() {
 
     clearTable()
     buildTable()
-}
+})
+
+$('.resetM').click(function resetM() {
+    
+     $('#searchF').modal('hide')
+
+    $('.sortD:first').val('default')
+    $('.sortL:first').val('default')
+    $('#searchBarM').val("")
+
+
+
+
+    clearTable()
+    buildTable()
+})
 
 
 function loadProfile(profile) {
@@ -434,7 +646,7 @@ function loadProfile(profile) {
 }
 
 
-function addEmployee() {
+$('.addEmployee').click(function addEmployee() {
 
     let departmentName = $('#addEmployeeDepartment').val()
 
@@ -442,6 +654,8 @@ function addEmployee() {
 
     $.getJSON(`php/getAllDepartments.php`, function (departments) {
         let departmentID = departments.data.filter(dep => dep.name == departmentName)[0].id
+        
+        
 
 
 
@@ -478,7 +692,7 @@ function addEmployee() {
 
     })
 
-}
+})
 
 
 function deleteEmployee() {
@@ -556,23 +770,49 @@ $.getJSON(`php/getAllLocations.php`, function (locations) {
 
 function edit() {
     
-   
-    var nameE = $('#firstName').text()
-    
-    $("#nameE").val(nameE);
-    
-    var lastE = $('#lastName').text()
-    
-    $("#lastE").val(lastE);
-    
-    var emailE = $('#email').text()
-    
-    $("#emailE").val(emailE);
     
     var idE = $('#id').text()
     
     
     $('#idE').val(idE);
+    
+   let departmentDropdown = $('#selectE');
+   
+departmentDropdown.empty();
+
+$.getJSON(`php/getAllDepartments.php`, function (departments) {
+
+    $.each(departments.data, function (key, entry) {
+
+        var depart = entry.name;
+        // console.log(key);
+        departmentDropdown.append($('<option></option>').attr('value', depart).text(depart));
+
+
+    })
+
+
+
+})
+    
+     $.ajax({
+            data: {
+                'id': parseInt(idE)
+            },
+            url: 'php/tableData.php',
+            dataType: 'json',
+            success: function (data) {
+
+
+            var editD = data.data[0];
+            $("#nameE").val(editD.firstName);
+            $("#lastE").val(editD.lastName);
+            $("#emailE").val(editD.email);
+            var department = (editD.departmentID - 1);
+            departmentDropdown.prop('selectedIndex', department);
+            
+            }
+        })
     
    
 }
@@ -595,9 +835,157 @@ function updateLocation() {
 }
 
 
+$('.editDropdown').click(function editDropdown() {
+    let editDropdown = $('#inputLocation');
+
+editDropdown.empty();
+editDropdown.append('<option selected="true" value="default">Choose the location</option>');
+editDropdown.prop('selectedIndex', 0);
+
+$.getJSON(`php/getAllLocations.php`, function (locations) {
+
+    $.each(locations.data, function (key, entry) {
+
+        var depart = entry.name;
+        editDropdown.append($('<option></option>').attr('value', depart).text(depart));
+        $('#locationID').html(entry.id);
+       
+        
+    })
+
+})
+})
+
+$('.editL').click(function editL() {
+    
+    var inputLocation = $('#inputLocation').val();
+    // console.log(inputLocation);
+    $('#locationEm').val(inputLocation);
+    
+})
+
+$('.renameLocation').click(function renameLocation() {
+    
+    var locationI = $('#locationID').text();
+    // console.log($('#locationEm').val())
+    // console.log(locationI)
+    
+    
+    
+    $.ajax({
+            data: {
+                'id': parseInt(locationI),
+                'name': $('#locationEm').val()
+                
+            },
+            url: 'php/editLocation.php',
+            dataType: 'json',
+            success: function (data) {
+
+        //   console.log(data);
+        //   console.log('labas')
+        
+          window.location.reload();
+          
+            
+            }
+        })
+})
+
+$('#exampleModal2').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('#locationM').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('#locationE').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('#locationMR').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('#departmentM').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('#departmentE').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('#departmentMR').on('show.bs.modal', function () {
+  $('#searchF').modal('hide')
+})
+
+$('.editDropdownD').click(function editDropdownD() {
 
 
-function show_confirmE() {
+let departmentDropdown = $('#inputDepartment');
+   
+departmentDropdown.empty();
+departmentDropdown.append('<option selected="true" value="default">Choose the location</option>');
+departmentDropdown.prop('selectedIndex', 0);
+
+$.getJSON(`php/getAllDepartments.php`, function (departments) {
+
+    $.each(departments.data, function (key, entry) {
+
+        var depart = entry.name;
+        // console.log(key);
+        departmentDropdown.append($('<option></option>').attr('value', depart).text(depart));
+        $('#departmentID').html(entry.id);
+
+
+    })
+
+
+
+})
+})
+
+$('.editD').click(function editD() {
+    
+    var inputLocation = $('#inputDepartment').val();
+    // console.log(inputLocation);
+    $('#departmentEm').val(inputLocation);
+    
+})
+
+$('.renameDepartment').click(function renameDepartment() {
+    
+    var locationI = $('#departmentID').text();
+    // console.log($('#locationEm').val())
+    // console.log(locationI)
+    
+    
+    
+    $.ajax({
+            data: {
+                'id': parseInt(locationI),
+                'name': $('#departmentEm').val()
+                
+            },
+            url: 'php/editDepartment.php',
+            dataType: 'json',
+            success: function (data) {
+
+        //   console.log(data);
+        //   console.log('labas')
+        
+          window.location.reload();
+          
+            
+            }
+        })
+})
+
+
+
+
+$('.show_confirmE').click(function show_confirmE() {
     $.confirm({
         title: '',
         content: 'Are you sure you wish to update the profile?',
@@ -610,7 +998,7 @@ function show_confirmE() {
             }
         }
     });
-}
+})
 
 function saveProfile() {
 
@@ -675,7 +1063,7 @@ function editEmployee() {
     })
 }
 
-function addDepartment() {
+$('.addDepartment').click(function addDepartment() {
 
     let departmentName = $('#addDepartment').val()
     let locationName = $('#newDepartment').val()
@@ -704,7 +1092,7 @@ function addDepartment() {
         })
     });
 
-}
+})
 
 function removeDepartment() {
 
@@ -731,7 +1119,7 @@ function removeDepartment() {
 
 }
 
-function checkPC() {
+$('.checkPC').click(function checkPC() {
     
       let departmentName = $('#removeDepartment').val()
 
@@ -761,7 +1149,7 @@ function checkPC() {
         
 })
 
-}
+})
 
 function show_confirmD() {
     $.confirm({
@@ -778,7 +1166,7 @@ function show_confirmD() {
     });
 }
 
-function addLocation() {
+$('.addLocation').click(function addLocation() {
 
     let locationName = $('#addLocation').val()
 
@@ -797,10 +1185,10 @@ function addLocation() {
         }
     })
 
-}
+})
 
 
-function show_confirm() {
+$('.show_confirm').click(function show_confirm() {
     $.confirm({
         title: '',
         content: 'Are you sure you wish to delete?',
@@ -813,7 +1201,7 @@ function show_confirm() {
             }
         }
     });
-}
+})
 
 function removeLocation() {
 
