@@ -8,7 +8,7 @@
     <title>Company Directory</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="./all.css">-->
+
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/main.css">
@@ -21,54 +21,68 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,800;1,400&display=swap"
         rel="stylesheet">
-   
- 
+
+
 
 
 
 </head>
 
+
 <body>
 
-    <nav class="navbar navbar-light">
+
+    <nav class="navbar sticky-top navbar-light">
 
         <a class="navbar-brand h1" href="https://tmusenko.com/directory/"><i class="fas fa-folder fa-2x"></i> <span
                 class="logo">Company
                 Directory</span></a>
 
     </nav>
-
     <hr>
 
     <main>
         <div id="controls" class="row">
+            <div class="filterButton">
+                <button class="btn btn-primary" id="MobileButton" data-toggle="modal" data-target="#searchF">Search
+                    filters</button>
+            </div>
+        
+        </div>
+        <div id="mobileH">
+            
+           
+
+
             <div class="search">
                 <h4>Keywords</h4>
                 <input id="searchBar" placeholder="Type in a name or last name here...">
             </div>
             <div class="departmentSelect">
                 <h4>Department</h4>
-                <select class="filterSelect allDepartments" id="allDepartments" onclick="sortListD()">
+                <select class="filterSelect allDepartments" id="allDepartments" >
 
                 </select>
             </div>
 
-            <div class="LocationSelect">
+            <div class="locationSelect">
                 <h4>Location</h4>
-                <select class="filterSelect allLocations" id="allLocations" onclick="sortList()">
+                <select class="filterSelect allLocations" id="allLocations">
 
                 </select>
             </div>
             <div class="filterControl">
                 <div class="filterButton">
-                    <button class="btn btn-secondary" id="searchButton" onclick="search()"><i class="fas fa-search"></i>
+                    <button class="btn btn-secondary" id="searchButton"><i class="fas fa-search"></i>
                         Filter</button>
                 </div>
                 <div class="resetButton">
-                    <a onclick="reset()">
+                    <a class="reset">
                         <i class="fas fa-redo"></i>
                     </a>
                 </div>
+
+
 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
@@ -77,146 +91,36 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <div class="editMode">
-                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal2" id="editMode" onclick="addEm()"><i
-                                    class="fas fa-plus"></i> Add Employee </button>
+                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal2"
+                                id="editMode"><i class="fas fa-plus"></i> Add Employee </button>
                             <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
                                 data-target="#locationM"><i class="fas fa-plus"></i> Add location</button>
+                            <button id="editMode" class="dropdown-item editDropdown" type="button" data-toggle="modal"
+                                data-target="#locationE"><i class="fas fa-minus"></i>
+                                Edit
+                                location</button>
                             <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
                                 data-target="#locationMR"><i class="fas fa-minus"></i> Remove location</button>
                             <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
                                 data-target="#departmentM"><i class="fas fa-plus"></i> Add department</button>
+                            <button id="editMode" class="dropdown-item editDropdownD" type="button" data-toggle="modal"
+                                data-target="#departmentE"><i class="fas fa-minus"></i>
+                                Edit
+                                department</button>
                             <button id="editMode" class="dropdown-item" type="button" data-toggle="modal"
-                                data-target="#departmentMR"><i class="fas fa-minus"></i> Remove department</button>
+                                data-target="#departmentMR"><i class="fas fa-minus"></i> Remove
+                                department</button>
+
 
                         </div>
 
-
-
-                    </div>
-
-                    <div class="modal fade" id="locationM" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add location</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <input id="addLocation">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="addLocation()">Add new
-                                        location</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="modal fade" id="locationMR" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Remove location</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <select class="filterSelect allLocations" id="removeLocation" onclick="sortListR()">
-
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="show_confirm()">Remove
-                                        location</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    <div class="modal fade" id="departmentM" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add department</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <input id="addDepartment">
-                                    <select class="filterSelect allLocations" id="newDepartment">
-
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="addDepartment()">Add new
-                                        department</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="modal fade" id="departmentMR" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Remove department</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <select class="filterSelect allDepartments" id="removeDepartment" onclick="sortListRD()">
-
-                                    </select>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="checkPC()">Remove
-                                        department</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-
-
-
-
             </div>
-
+        
 
 
         </div>
-
-
-
-
-
-
-
 
 
         <hr>
@@ -225,10 +129,10 @@
 
         <div class="row">
 
-            <div class="dataBase table-wrapper-scroll-y my-custom-scrollbar col-8">
+            <div class="dataBase my-custom-scrollbar col-8">
                 <table class="table table-hover mb-0" id="dataBase">
                     <thead>
-                       
+
                     </thead>
                     <tbody>
 
@@ -263,8 +167,8 @@
 
                     <p>Location: <span id="location">London</span></p>
 
-                    <button class="btn btn-secondary" id="save" onclick="show_confirmE()">Save</button>
-                    <button class="btn btn-secondary" id="cancel" onclick="restartP()">Cancel</button>
+                    <!--<button class="btn btn-secondary" id="save" onclick="show_confirmE()">Save</button>-->
+                    <!--<button class="btn btn-secondary" id="cancel" onclick="restartP()">Cancel</button>-->
 
                 </div>
 
@@ -275,124 +179,452 @@
             </div>
 
         </div>
-        
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit the profile</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="naujas">
-    <div class="form-group row">
-     
-    <div class="col-8">
-      <input id="idE" name="text2" type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="nameE" class="col-4 col-form-label">Name:</label> 
-    <div class="col-8">
-      <input id="nameE" name="text2" type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="lastE" class="col-4 col-form-label">Last Name:</label> 
-    <div class="col-8">
-      <input id="lastE" name="text1" type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="emailE" class="col-4 col-form-label">Email:</label> 
-    <div class="col-8">
-      <input id="emailE" name="text3" type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="selectE" class="col-4 col-form-label">Department:</label> 
-    <div class="col-8">
-      <select id="selectE" name="select" class="custom-select allDepartments" onclick="sortListN()"></select>
-    </div>
-  </div> 
-  <div class="form-group row">
-    <div class="offset-4 col-8">
-    </div>
-  </div>
-</form>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="show_confirmE()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit the profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="naujas">
+                            <div class="form-group row">
+
+                                <div class="col-8">
+                                    <input id="idE" name="text2" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="nameE" class="col-4 col-form-label">Name:</label>
+                                <div class="col-8">
+                                    <input id="nameE" name="text2" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lastE" class="col-4 col-form-label">Last Name:</label>
+                                <div class="col-8">
+                                    <input id="lastE" name="text1" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="emailE" class="col-4 col-form-label">Email:</label>
+                                <div class="col-8">
+                                    <input id="emailE" name="text3" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="selectE" class="col-4 col-form-label">Department:</label>
+                                <div class="col-8">
+                                    <select id="selectE" name="select" class="custom-select sortListN"
+                                        ></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-4 col-8">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary show_confirmE">Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
     </main>
 
-   <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add new Employee</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-  <div class="form-group row">
-    <label for="addEmployeeFirstName" class="col-4 col-form-label">Name:</label> 
-    <div class="col-8">
-      <input id="addEmployeeFirstName" name="text2" type="text" class="form-control">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new Employee</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="addEmployeeFirstName" class="col-4 col-form-label">Name:</label>
+                            <div class="col-8">
+                                <input id="addEmployeeFirstName" name="text2" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="addEmployeeLastName" class="col-4 col-form-label">Last Name:</label>
+                            <div class="col-8">
+                                <input id="addEmployeeLastName" name="text1" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="addEmployeeEmail" class="col-4 col-form-label">Email:</label>
+                            <div class="col-8">
+                                <input id="addEmployeeEmail" name="text3" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="addEmployeeDepartment" class="col-4 col-form-label">Department:</label>
+                            <div class="col-8">
+                                <select id="addEmployeeDepartment" name="select"
+                                    class="custom-select allDepartments"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="offset-4 col-8">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary addEmployee">Add new Employee</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="addEmployeeLastName" class="col-4 col-form-label">Last Name:</label> 
-    <div class="col-8">
-      <input id="addEmployeeLastName" name="text1" type="text" class="form-control">
+
+    <div class="modal fade" id="locationM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add location
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="addLocation">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary addLocation" >Add new
+                        location</button>
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="addEmployeeEmail" class="col-4 col-form-label">Email:</label> 
-    <div class="col-8">
-      <input id="addEmployeeEmail" name="text3" type="text" class="form-control">
+
+
+
+    <div class="modal" id="locationE" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <select class="custom-select" id="inputLocation">
+
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary editL" type="button" data-toggle="modal" data-target="#editM"
+                                >Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="addEmployeeDepartment" class="col-4 col-form-label">Department:</label> 
-    <div class="col-8">
-      <select id="addEmployeeDepartment" name="select" class="custom-select allDepartments"></select>
+
+    <div class="modal" tabindex="-1" id="editM" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rename location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+
+                        <div class="col-8">
+                            <input id="locationEm" name="text2" type="text" class="form-control">
+                            <p id="locationID"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary renameLocation" >Save
+                        changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div> 
-  <div class="form-group row">
-    <div class="offset-4 col-8">
+
+
+
+    <div class="modal" id="departmentE" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <select class="custom-select" id="inputDepartment">
+
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary editD" type="button" data-toggle="modal" data-target="#editMD"
+                                >Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="addEmployee()">Add new Employee</button>
-      </div>
+
+    <div class="modal" tabindex="-1" id="editMD" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rename department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+
+                        <div class="col-8">
+                            <input id="departmentEm" name="text2" type="text" class="form-control">
+                            <p id="departmentID"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary renameDepartment">Save
+                        changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
 
 
-    <div class="d-flex align-items-center justify-content-center" id="footer">
-        <span>
-            Total Entries: <span id="totalEntries"></span>
-        </span>
+
+
+    <div class="modal fade" id="locationMR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Remove
+                        location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select class="filterSelect allLocations sortListR" id="removeLocation">
+
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary show_confirm">Remove
+                        location</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
+    <div class="modal fade" id="departmentM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add
+                        department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="addDepartment">
+                    <select class="filterSelect allLocations" id="newDepartment">
+
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary addDepartment" >Add new
+                        department</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="departmentMR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Remove
+                        department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select class="filterSelect allDepartments sortListRD" id="removeDepartment">
+
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary checkPC" >Remove
+                        department</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Modal-->
+
+
+    <div class="modal" tabindex="-1" id="searchF" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Search filters</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="search">
+                                <h4>Keywords</h4>
+                                <input id="searchBarM" placeholder="Type in a name or last name here...">
+                            </div>
+                            <div class="departmentSelect">
+                                <h4>Department</h4>
+                                <select class="filterSelect allDepartments sortD" id="allDepartmentsO">
+
+                                </select>
+                            </div>
+
+                            <div class="locationSelect">
+                                <h4>Location</h4>
+                                <select class="filterSelect allLocations sortL" id="allLocationsO">
+
+                                </select>
+                            </div>
+                            <div class="filterControl">
+
+
+
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Add/remove data
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <div class="editMode">
+                                            <button class="dropdown-item" type="button" data-toggle="modal"
+                                                data-target="#exampleModal2" id="editMode"><i
+                                                    class="fas fa-plus"></i> Add Employee
+                                            </button>
+                                            <button id="editMode" class="dropdown-item" type="button"
+                                                data-toggle="modal" data-target="#locationM"><i class="fas fa-plus"></i>
+                                                Add location</button>
+
+
+                                            <button id="editMode" class="dropdown-item editDropdown" type="button"
+                                                data-toggle="modal" data-target="#locationE"><i
+                                                    class="fas fa-minus"></i> Edit
+                                                location</button>
+                                            <button id="editMode" class="dropdown-item" type="button"
+                                                data-toggle="modal" data-target="#locationMR"><i
+                                                    class="fas fa-minus"></i> Remove location</button>
+                                            <button id="editMode" class="dropdown-item" type="button"
+                                                data-toggle="modal" data-target="#departmentM"><i
+                                                    class="fas fa-plus"></i> Add department</button>
+                                            <button id="editMode" class="dropdown-item editDropdownD" type="button"
+                                                data-toggle="modal" data-target="#departmentE"
+                                                ><i class="fas fa-minus"></i> Edit
+                                                department</button>
+                                            <button id="editMode" class="dropdown-item" type="button"
+                                                data-toggle="modal" data-target="#departmentMR"><i
+                                                    class="fas fa-minus"></i> Remove department</button>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <div class="resetButton">
+                                            <button class="btn btn-primary resetM">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                        </div>
+                                        <div class="filterButton">
+                                            <button class="btn btn-secondary searchM" id="searchButton"><i
+                                                    class="fas fa-search"></i>
+                                                Filter</button>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+<!--End-->
+
+
+    <!--<div class="align-items-center justify-content-center" id="footer">-->
+    <!--    <span>-->
+    <!--        Total Entries: <span id="totalEntries"></span>-->
+    <!--    </span>-->
+    <!--</div>-->
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -401,7 +633,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="./js/main.js"></script>
 </body>
