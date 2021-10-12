@@ -12,6 +12,24 @@ html{
     display: none;
 }
 
+#MobileButton{
+    display: none;
+}
+
+#mobileH{
+    display: flex;
+    margin-bottom: 2em;
+    margin-left: 1em;
+}
+
+#mobileH .search, #mobileH .departmentSelect, #mobileH .locationSelect, #mobileH .filterControl{
+    margin-bottom: 2em;
+}
+
+#locationID, #departmentID{
+    display: none;
+}
+
 hr{
   height: 2px;
   background: lightgray;
@@ -20,9 +38,9 @@ hr{
 }
 
 #searchBar{
-  width: 100%;
+  width: 298px;
   height: 40px;
-  margin-right: 20px;
+  /*margin-right: 20px;*/
 }
 
 .filterSelect{
@@ -100,10 +118,12 @@ hr{
   font-size: 1.2em;
   font-weight: 600;
   background-color: lightgrey;
+  display: flex;
 }
 
 #controls{
-  margin-left: 4em;
+  margin-left: 2em;
+  display: none;
 }
 /* 
 main{
@@ -198,6 +218,10 @@ tr:hover{
     font-weight: 500;
 }
 
+.col-8{
+      padding-left: 0;
+  }
+
 #firstName, #lastName, #department, #location, #email{
     font-style: italic;
 }
@@ -225,38 +249,56 @@ tr:hover{
 }
 
 
-@media screen and (max-width: 1282px) {
-  .filterControl{
-      margin-left: 10%;
+@media screen and (max-width: 1235px) {
+  #mobileH .filterControl{
+      /*margin-left: 10%;*/
+      margin-top:1em;
+      margin-bottom: 1em;
+      
   }
+  #mobileH .search, #mobileH .departmentSelect, #mobileH .locationSelect{
+    margin-bottom: 0;
+}
   #badge{
-      display: flex;
-      top: 2em;
+      display: none;
+      /*top: 2em;*/
   }
   #updateInfo{
       margin-left: 2em;
   }
   .col-8{
-      flex: 0 0 96%;
-      max-width: 96%;
+      flex: 0 0 100%;
+      max-width: 100%;
+      /*padding-left: 0;*/
   }
   #save, #cancel{
     /*display:none;*/
     margin-bottom: 1em;
 }
+ .my-custom-scrollbar{
+     height: 100%;
+     overflow-y: visible;
+     overflow-x: clip;
+ }
+ #mobileH {
+     display: block;
+ }
+
+ 
   
 }
 
-@media screen and (max-width: 746px) {
-    #controls{
-        display: inline-block;
-    }
+@media screen and (max-width: 811px) {
+    /*#controls{*/
+    /*    display: inline-block;*/
+    /*}*/
+    
     #badge{
         left: 15%;
     }
-    .filterControl{
-      margin-top: 2em;
-  }
+  /*  .filterControl{*/
+  /*    margin-bottom: 1em;*/
+  /*}*/
   /*.dataBase{*/
   /*    margin-left: -3em;*/
   /*}*/
@@ -269,13 +311,16 @@ tr:hover{
       margin-left: 0;
       display: block;
   }
-  .fa-5x{
-      font-size: 8em;
-      margin-top: 10%;
-  }
-   #updateInfo{
-      margin-bottom: 1.5em;
+  /*.fa-5x{*/
+  /*    font-size: 8em;*/
+  /*    margin-top: 10%;*/
+  /*}*/
+  /* #updateInfo{*/
+  /*    margin-bottom: 1.5em;*/
       
+  /*}*/
+  #controls{
+      width: 100%;
   }
 }
 
@@ -309,11 +354,11 @@ tr:hover{
 }
 
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 604px) {
     
-  .fa-5x{
-      display: none;
-  }
+  /*.fa-5x{*/
+  /*    display: none;*/
+  /*}*/
   .navbar-brand{
       font-size: 0.8em;
   }
@@ -321,23 +366,51 @@ tr:hover{
       margin-left: -3em;
   }
   #badge{
-      flex: 0 0 96%;
-      max-width: 96%;
-      left: 0;
-      justify-content: center;
+      display: none;
   }
-  #updateInfo{
-      margin-left: 0;
+  #footer{
+      display:none
+  }
+  #MobileButton{
+      display: inline-block;
+      width: 100%;
+      border-radius: 0;
+  }
+  /*nav{*/
+  /*    position: fixed;*/
+  /*}*/
+  .dataBase{
+      height: 100%;
+      padding-left: 0;
       
   }
+    #mobileH{
+    display:none;
+  }
+  /*#dropdownMenu2{*/
+  /*    display: none;*/
+  /*}*/
+  hr{
+      display: none;
+  }
+  #controls{
+      margin: 0;
+      display: block;
+  }
+  .col-8{
+      padding-right: 0;
+  }
+  .modal-body .search, .modal-body .departmentSelect, .modal-body .locationSelect{
+    margin-bottom: 1em;
+}
 }
 
-@media screen and (max-width: 366px) {
+/*@media screen and (max-width: 366px) {*/
     
-  #updateInfo{
-     margin-left: 0; 
-  }
-}
+/*  #updateInfo{*/
+/*     margin-left: 0; */
+/*  }*/
+/*}*/
 
 @media screen and (max-width: 436px) {
     
@@ -372,6 +445,11 @@ tr:hover{
   #hideLo{
       display: none;
   }
+}
+
+
+#nameHeader, #locationHeader, #emailHeader, #departmentHeader{
+    display: none;
 }
 
 
